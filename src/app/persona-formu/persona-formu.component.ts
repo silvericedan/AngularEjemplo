@@ -18,6 +18,8 @@ export class PersonaFormuComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciarFormulario();
+
+    this.getPersona();
   }
 
   iniciarFormulario() {
@@ -28,10 +30,32 @@ export class PersonaFormuComponent implements OnInit {
     });
   }
 
-  submit() {
-    this.personaService.guardarPersona(this.personaForm.value).subscribe((persona) => {
-        console.log('Persona Nueva: ', persona);
+  getPersona(){
+    this.personaService.getPersonas().subscribe((personas: any) => {
+      this.personas = personas;
     });
+  }
+
+  editarPersona(persona: any){
+    this.idPersona = persona._id;
+    this.personaForm.patchValue({
+      nombre: persona.nombre,
+      apellido: persona.apellido,
+      edad: persona.edad
+    });
+  }
+
+  submit() {
+    debugger;
+    if (this.idPersona){
+      this.personaService.editarPersona(this.idPersona, this.personaForm.value).subscribe((persona) => {
+        console.log('Persona Editada: ', persona);
+      });
+    } else{
+      this.personaService.guardarPersona(this.personaForm.value).subscribe((persona) => {
+        console.log('Persona Nueva: ', persona);
+      });
+    }
   }
 
 }
