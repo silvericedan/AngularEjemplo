@@ -43,10 +43,15 @@ export class PersonaFormuComponent implements OnInit {
       apellido: persona.apellido,
       edad: persona.edad
     });
+    
+  }
+
+  borrarPersona(persona: any){
+    this.idPersona = persona._id;
+    this.personaService.borrarPersona(this.idPersona).subscribe(result => console.log('Se borro a: ', persona));
   }
 
   submit() {
-    debugger;
     if (this.idPersona){
       this.personaService.editarPersona(this.idPersona, this.personaForm.value).subscribe((persona) => {
         console.log('Persona Editada: ', persona);

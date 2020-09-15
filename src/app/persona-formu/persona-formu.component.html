@@ -1,24 +1,37 @@
-<p>FORMULARIO DE INSCRIPCION DE DATOS DE PERSONA</p>
+<mat-toolbar>
+    <span>FORMULARIO DE INSCRIPCION DE DATOS DE PERSONA</span>
+</mat-toolbar>
+<br>
 
 <form [formGroup]="personaForm" (ngSubmit)="submit()">
-    <div>
-        <input matInput name="nombre" formControlName="nombre" placeholder="Nombre">
-    </div>
-    <div>
-        <input matInput name="apellido" formControlName="apellido" placeholder="Apellido">
-    </div>
-    <div>
-        <input matInput name="edad" formControlName="edad" placeholder="Edad">
-    </div>
+<div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput name ="nombre" formControlName="nombre">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Apellido</mat-label>
+        <input matInput name ="apellido" formControlName="apellido">
+      </mat-form-field>
+      <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Edad</mat-label>
+        <input matInput name ="edad" formControlName="edad">
+      </mat-form-field>
+  </div>
 
-    <div>
-        <button mat-raised-button color="primary">Guardar</button>
-    </div>
+  <div>
+    <button mat-raised-button color="primary">Guardar</button>
+  </div>
 
-    <div *ngFor="let persona of personas">
-        <p>Nombre y Apellido: {{persona.nombre}} {{persona.apellido}}</p>
-        <p>Edad: {{persona.edad}}</p>
+  <mat-list>
+    <mat-list-item *ngFor="let persona of personas">
+        <a matLine>Nombre y Apellido: {{persona.nombre}} {{persona.apellido}}</a>
+        <b matLine>Edad: {{persona.edad}}</b>
         <button type="button" mat-raised-button color="primary" (click)="editarPersona(persona)">Editar</button>
-    </div>
+        <button type="button" mat-raised-button color="primary" (click)="borrarPersona(persona)">Borrar</button>
+     </mat-list-item>
+</mat-list>
 
 </form>
