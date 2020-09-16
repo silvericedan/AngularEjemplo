@@ -15,6 +15,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatInputModule,
     MatListModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatGridListModule,
+    MatTableModule
   ],
   providers: [PersonaService],
   bootstrap: [AppComponent]

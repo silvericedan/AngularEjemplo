@@ -9,10 +9,12 @@ import { PersonaService } from './../servicios/persona.service';
 })
 export class PersonaFormuComponent implements OnInit {
 
+  text: string = 'Mostrar Formulario';
   personaForm: FormGroup;
-
+  show: any = false;
   personas: any[] = [];
   idPersona: any;
+  displayedColumns: string[] = ['nombre', 'apellido', 'edad', 'acciones'];
 
   constructor(private fb: FormBuilder, private personaService: PersonaService) { }
 
@@ -63,4 +65,14 @@ export class PersonaFormuComponent implements OnInit {
     }
   }
 
+  showForm(){
+    this.show = !this.show;
+    console.log(this.personas);
+    if (this.show) {
+      this.text = 'Ocultar Formulario';
+    }
+    else {
+      this.text = 'Mostrar Formulario';
+    }
+  }
 }

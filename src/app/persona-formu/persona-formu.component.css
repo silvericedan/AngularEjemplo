@@ -1,0 +1,25 @@
+.titlecenter{
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.inner {
+    display: table;
+    margin: 0 auto;
+  }
+table {
+    width: 50%;
+    margin: 0 auto;
+  }
+.buttonform {
+    margin-bottom: 10px;
+}
+.buttontable {
+    margin-left: 3px; 
+    margin-right: 3px;
+}
+
+.thcenter{
+    text-align: center;
+}
