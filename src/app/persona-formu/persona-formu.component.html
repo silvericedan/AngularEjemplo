@@ -24,12 +24,15 @@
       <mat-label>Edad</mat-label>
       <input matInput name="edad" formControlName="edad">
     </mat-form-field>
+
+    <div class="inner" *ngIf="show">
+      <button type="submit" mat-raised-button class="buttonform" color="primary">Guardar</button>
+    </div>
+
   </form>
 </div>
 
-<div class="inner" *ngIf="show">
-  <button mat-raised-button class="buttonform" color="primary">Guardar</button>
-</div>
+
 
 <div class="center">
 

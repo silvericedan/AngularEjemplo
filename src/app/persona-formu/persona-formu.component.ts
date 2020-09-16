@@ -26,46 +26,47 @@ export class PersonaFormuComponent implements OnInit {
 
   iniciarFormulario() {
     this.personaForm = this.fb.group({
-      nombre: [ '' ],
-      apellido: [ '' ],
-      edad: [ '' ]
+      nombre: [''],
+      apellido: [''],
+      edad: ['']
     });
   }
 
-  getPersona(){
+  getPersona() {
     this.personaService.getPersonas().subscribe((personas: any) => {
       this.personas = personas;
     });
   }
 
-  editarPersona(persona: any){
+  editarPersona(persona: any) {
     this.idPersona = persona._id;
     this.personaForm.patchValue({
       nombre: persona.nombre,
       apellido: persona.apellido,
       edad: persona.edad
     });
-    
   }
 
-  borrarPersona(persona: any){
+  borrarPersona(persona: any) {
     this.idPersona = persona._id;
     this.personaService.borrarPersona(this.idPersona).subscribe(result => console.log('Se borro a: ', persona));
+    this.getPersona();
   }
 
   submit() {
-    if (this.idPersona){
+    if (this.idPersona) {
       this.personaService.editarPersona(this.idPersona, this.personaForm.value).subscribe((persona) => {
         console.log('Persona Editada: ', persona);
       });
-    } else{
+    } else {
       this.personaService.guardarPersona(this.personaForm.value).subscribe((persona) => {
         console.log('Persona Nueva: ', persona);
       });
     }
+    this.getPersona();
   }
 
-  showForm(){
+  showForm() {
     this.show = !this.show;
     console.log(this.personas);
     if (this.show) {
