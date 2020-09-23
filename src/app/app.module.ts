@@ -1,3 +1,4 @@
+import { CursoService } from './servicios/curso.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,12 +18,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { CrearCursoComponent } from './crear-curso/crear-curso.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonaFormuComponent
+    PersonaFormuComponent,
+    CrearCursoComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +41,10 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatToolbarModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule
   ],
-  providers: [PersonaService],
+  providers: [PersonaService, CursoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

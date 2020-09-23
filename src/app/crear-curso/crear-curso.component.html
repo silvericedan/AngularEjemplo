@@ -1,0 +1,25 @@
+<div>
+
+<mat-card>
+    <mat-card-title>Crear Curso</mat-card-title>
+
+    <mat-card-content>
+
+        <form [formGroup]="itemForm" (ngSubmit)="submit()" class ="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre del Curso</mat-label>
+                <input matInput name="nombreCurso" formControlName="nombreCurso">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Profesor</mat-label>
+                <input matInput name="profesor" formControlName="profesor">
+            </mat-form-field>
+
+            <button mat-button color="primary">Guardar</button>
+        </form>
+
+    </mat-card-content>
+</mat-card>
+
+</div>
