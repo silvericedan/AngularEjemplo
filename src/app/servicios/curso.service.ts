@@ -12,9 +12,15 @@ export class CursoService{
     };
     constructor(private http: HttpClient) {}
 
+    getCursoById(idCurso: string){
+        return this.http.get(this.cursoUrl + 'cursoId/' + idCurso);
+    }
+
+    getCursos() {
+        return this.http.get(this.cursoUrl + 'curso');
+    }
 
     saveCurso(curso: any) {
-        debugger;
         return this.http.post(this.cursoUrl + 'curso', JSON.stringify(curso), this.httpOptions);
     }
 }

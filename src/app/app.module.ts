@@ -20,13 +20,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { CrearCursoComponent } from './crear-curso/crear-curso.component';
 import { MatCardModule } from '@angular/material/card';
+import { ListarCursosComponent } from './listar-cursos/listar-cursos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonaFormuComponent,
-    CrearCursoComponent
+    CrearCursoComponent,
+    ListarCursosComponent
   ],
   imports: [
     BrowserModule,

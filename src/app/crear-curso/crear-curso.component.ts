@@ -1,6 +1,7 @@
 import { CursoService } from './../servicios/curso.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -10,13 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearCursoComponent implements OnInit {
   itemForm: FormGroup;
+  idCurso: string;
 
-  constructor(private fb: FormBuilder, private cursoService: CursoService) { }
+  constructor(private fb: FormBuilder, private cursoService: CursoService, private paramRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.paramRoute.paramMap.subscribe(param => {
+      debugger;
+      this.idCurso = param.get('id');
+      
+      if (this.idCurso !== 'new'){
+        this.getCursoById(this.idCurso);
+      }
+    });
+
     this.initForm();
   }
 
+  getCursoById(idCurso: string){
+    this.cursoService.getCursoById(idCurso).subscribe(data => {
+      debugger;
+      let cursoId = data;
+
+      this.itemForm.patchValue(cursoId);
+    })
+  }
   initForm() {
     this.itemForm = this.fb.group({
         nombreCurso: [ '' ],
@@ -25,9 +44,7 @@ export class CrearCursoComponent implements OnInit {
   }
 
   submit() {
-    debugger;
     this.cursoService.saveCurso(this.itemForm.value).subscribe((data) => {
-        debugger;
         let cursoNuevo = data;
     })
   }
