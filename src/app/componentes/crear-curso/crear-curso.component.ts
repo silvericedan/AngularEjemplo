@@ -1,4 +1,4 @@
-import { CursoService } from './../servicios/curso.service';
+import { CursoService } from './../../servicios/curso.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';

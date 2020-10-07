@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CrearCursoComponent } from './crear-curso/crear-curso.component';
-import { PersonaFormuComponent } from './persona-formu/persona-formu.component';
-import { ListarCursosComponent } from './listar-cursos/listar-cursos.component';
+import { CrearCursoComponent } from './componentes/crear-curso/crear-curso.component';
+import { PersonaFormuComponent } from './componentes/persona-formu/persona-formu.component';
+import { ListarCursosComponent } from './componentes/listar-cursos/listar-cursos.component';
 
 
 const routes: Routes = [

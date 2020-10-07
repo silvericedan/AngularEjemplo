@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PersonaFormuComponent } from './persona-formu/persona-formu.component';
+import { PersonaFormuComponent } from './componentes/persona-formu/persona-formu.component';
 import { PersonaService } from './servicios/persona.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,9 +18,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
-import { CrearCursoComponent } from './crear-curso/crear-curso.component';
+import { CrearCursoComponent } from './componentes/crear-curso/crear-curso.component';
 import { MatCardModule } from '@angular/material/card';
-import { ListarCursosComponent } from './listar-cursos/listar-cursos.component';
+import { ListarCursosComponent } from './componentes/listar-cursos/listar-cursos.component';
 
 
 @NgModule({
