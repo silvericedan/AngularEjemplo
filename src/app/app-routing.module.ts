@@ -6,10 +6,14 @@ import { ListarCursosComponent } from './componentes/listar-cursos/listar-cursos
 
 
 const routes: Routes = [
-  { path: 'app-persona-formu', component: PersonaFormuComponent },
+  {
+    path: '',
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)
+  }
+ /*  { path: 'app-persona-formu', component: PersonaFormuComponent },
   { path: 'app-crear-curso', component: CrearCursoComponent },
   { path: 'app-crear-curso/:id', component: CrearCursoComponent },
-  { path: 'app-listar-cursos', component: ListarCursosComponent}
+  { path: 'app-listar-cursos', component: ListarCursosComponent} */
 ];
 
 @NgModule({
