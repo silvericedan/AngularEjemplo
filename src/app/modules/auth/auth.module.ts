@@ -11,11 +11,13 @@ import {MatInputModule} from '@angular/material/input';
 
 import { TokenStorageService } from './services/token-storage.service';
 
+import { authInterceptorProviders } from './helper/auth.interceptor';
+
 
 @NgModule({
     declarations: [ LoginComponent ],
     imports: [ ReactiveFormsModule, HttpClientModule, CommonModule, AppRoutingModule,
     MatFormFieldModule, MatInputModule ],
-    providers: [ AuthService, TokenStorageService ],
+    providers: [ AuthService, TokenStorageService, authInterceptorProviders ],
   })
   export class AuthModule { }

@@ -2,6 +2,7 @@ import { TokenStorageService } from './../services/token-storage.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -9,28 +10,52 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class LoginComponent implements OnInit {
-    itemForm: FormGroup;
+    form: any = {};
+    isLoggedIn = false;
+    isLoginFailed = false;
+    errorMessage = '';
+	roles: string[] = [];
+	itemForm: FormGroup;
 
-    constructor(private tokenService: TokenStorageService, private auth: AuthService, private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private tokenStorage: TokenStorageService, private authService: AuthService, private router : Router) {}
 
     ngOnInit() {
-        this.initForm();
-    }
+        if (this.tokenStorage.getToken()) {
+            this.isLoggedIn = true;
+		}  
+		this.iniciarFormulario();
+		 
+	}
+	
+	iniciarFormulario() {
+		this.itemForm = this.fb.group({
+		  username: [''],
+		  password: ['']
+		});
+	  }
 
-    initForm() {
-        this.itemForm = this.fb.group({
-            username: [''],
-            password: ['']
-        });
-    }
+    submit(): void {
+		this.authService.login(this.itemForm.value).subscribe(
+			(data) => {
+				debugger;
+				this.tokenStorage.saveToken(data.token);
+				// this.tokenStorage.saveUser(data);
 
-    submit(){
-        let credenciales = this.itemForm.value;
-        debugger;
-        this.auth.login(credenciales).subscribe((data) => {
-            debugger;
-            let user = data;
-            this.tokenService.saveToken(data.token);
-        })
-    }
+				this.isLoginFailed = false;
+				this.isLoggedIn = true;
+
+				this.router.navigate(['/persona/crearPersona']);
+				// this.roles = this.tokenStorage.getUser().roles;
+				// this.reloadPage();
+			},
+			(err) => {
+				this.errorMessage = err.error.message;
+				this.isLoginFailed = true;
+			}
+		);
+	}
+
+	reloadPage(): void {
+		window.location.reload();
+	}
 }

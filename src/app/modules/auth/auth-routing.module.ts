@@ -7,13 +7,14 @@ const routes: Routes = [
         path: '',
         children: [
         {
-            path: '', 
+            path: '',
             redirectTo: 'login',
             pathMatch: 'full'
         },
         {
             path: 'login',
-            component: LoginComponent
+            component: LoginComponent,
+            data: { returnUrl: window.location.pathname }
         }
     ]
     }

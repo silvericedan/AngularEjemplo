@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PersonaFormuComponent } from './componentes/persona-formu/persona-formu.component';
+import { PersonaFormuComponent } from './modules/personas/persona-formu/persona-formu.component';
 import { PersonaService } from './servicios/persona.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';

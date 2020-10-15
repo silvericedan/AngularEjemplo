@@ -1,21 +1,54 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+const AUTH_API = 'http://localhost:3002/api/modules/auth/';
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-@Injectable()
-export class AuthService{
-    private authUrl = 'http://localhost:3002/api/modules/auth/';
+@Injectable({
+    providedIn: 'root'
+})
+export class AuthService {
+    isLogged: boolean;
+    constructor(private http: HttpClient) { }
+ 
+//  userData$: Observable<any>;
+// currentUserSubject: BehaviorSubject<any>;
 
-    constructor(private http: HttpClient) {}
+    public isAutenticado(): boolean{
+        return localStorage.getItem('isLogged') === 'true' ? true : false;
+    }
 
-    login(credenciales): Observable<any> {
+    login(credentials): Observable<any> {
+
         return this.http.post(
-            this.authUrl + 'login', 
-            {username: credenciales.username, password: credenciales.password }, httpOptions)
+            AUTH_API + 'login',
+            {
+                username: credentials.username,
+                password: credentials.password
+            },
+            httpOptions 
+        ).pipe(map(x => {
+            debugger;
+            this.isLogged = true;
+            localStorage.setItem('isLogged', this.isLogged.toString());
+            return x;
+        }));
+    }
+
+    register(user): Observable<any> {
+        return this.http.post(
+            AUTH_API + 'registro',
+            {
+                username: user.username,
+                email: user.email,
+                password: user.password
+            },
+            httpOptions
+        );
     }
 }
