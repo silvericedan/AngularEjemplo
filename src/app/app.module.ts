@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CrearCursoComponent } from './componentes/crear-curso/crear-curso.component';
 import { MatCardModule } from '@angular/material/card';
 import { ListarCursosComponent } from './componentes/listar-cursos/listar-cursos.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ListarCursosComponent } from './componentes/listar-cursos/listar-cursos
     MatToolbarModule,
     MatGridListModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [PersonaService, CursoService],
   bootstrap: [AppComponent]

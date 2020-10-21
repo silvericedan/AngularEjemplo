@@ -32,6 +32,22 @@
   </form>
 </div>
 
+<div class="inner">
+  <mat-form-field appearance="fill">
+    <mat-label>Criterio de Ordenamiento</mat-label>
+    <mat-select >
+      <mat-option (onSelectionChange)="ordenarLista(tipo.valor)" *ngFor="let tipo of tiposOrdenamientos" [value]="tipo.valor" >
+        {{tipo.nombre}} 
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!--<button type="button" mat-raised-button color="primary" (click)="ordenarLista()">Ordenar Lista</button>
+  -->
+  </div>
+
+<div class="inner">
+  <button type="button" mat-raised-button color="primary" (click)="getPersona()">Actualizar lista</button>
+</div>
 
 
 <div class="center">
