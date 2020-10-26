@@ -33,9 +33,11 @@ export class AuthService {
             },
             httpOptions 
         ).pipe(map(x => {
-            debugger;
-            this.isLogged = true;
-            localStorage.setItem('isLogged', this.isLogged.toString());
+            if (x.token){
+                debugger;
+                this.isLogged = true;
+                localStorage.setItem('isLogged', this.isLogged.toString());
+            }
             return x;
         }));
     }
