@@ -10,7 +10,13 @@ import { PersonaService } from '../../../servicios/persona.service';
 })
 export class PersonaFormuComponent implements OnInit {
 
-  tiposOrdenamientos = [{ nombre: 'Sin Orden', valor: 'default' }, { nombre: 'Por Edad', valor: 'edad' }, { nombre: 'Alfabetico', valor: 'nombre' }];
+  tiposOrdenamientos = [{ nombre: 'Sin Orden', valor: 'default' },
+  { nombre: 'Por Edad', valor: 'edad' },
+  { nombre: 'Alfabetico', valor: 'nombre' },
+  { nombre: 'El nombre contiene', valor: 'contiene' },
+  { nombre: 'Mayor a', valor: 'mayor' },
+  { nombre: 'Menor', valor: 'menor' }];
+
   text: string = 'Mostrar Formulario';
   personaForm: FormGroup;
   show: any = false;
@@ -39,7 +45,7 @@ export class PersonaFormuComponent implements OnInit {
       this.personas = personas;
     });
   }
-  ordenarLista(campo: string) {
+  ordenarLista(campo: string, valor?: any) {
     const newArray = [...this.personas];
     switch (campo) {
       case 'edad':
@@ -47,6 +53,18 @@ export class PersonaFormuComponent implements OnInit {
         this.personas = newArray;
         break;
       case 'nombre':
+        newArray.sort((a, b) => a[campo].localeCompare(b[campo]));
+        this.personas = newArray;
+        break;
+        case 'contiene':
+        newArray.filter((a) => a.nombre.include('R'));
+        this.personas = newArray;
+        break;
+        case 'mayor':
+        newArray.sort((a, b) => a[campo].localeCompare(b[campo]));
+        this.personas = newArray;
+        break;
+        case 'menor':
         newArray.sort((a, b) => a[campo].localeCompare(b[campo]));
         this.personas = newArray;
         break;
